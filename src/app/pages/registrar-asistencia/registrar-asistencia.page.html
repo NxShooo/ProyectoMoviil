@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title class="titulo">Registrar Asistencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Tabla de Alumnos y Estado -->
+  <ion-card>
+    <div class="table-container">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th style="text-align: left;">Alumno</th>
+            <th style="text-align: right;">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Recorre las asignaturas -->
+          <tr *ngFor="let asignatura of TodaAsignatura">
+            <!-- Nombre del alumno -->
+            <td style="text-align: left;">
+              <div *ngIf="AlumnosPorSeccion[asignatura.id]">
+                <div *ngFor="let seccion of SeccionesPorAsignatura[asignatura.id]">
+                  <div *ngFor="let alumno of AlumnosPorSeccion[asignatura.id][seccion.id]">
+                    {{ alumno.id }}
+                  </div>
+                </div>
+              </div>
+            </td>
+            <!-- Estado -->
+            <td style="text-align: right;">
+              <div *ngIf="AsistenciaPorAlumno[asignatura.id]">
+                <div *ngFor="let seccion of SeccionesPorAsignatura[asignatura.id]">
+                  <div *ngFor="let alumno of AlumnosPorSeccion[asignatura.id][seccion.id]">
+                    <div *ngIf="AsistenciaPorAlumno[asignatura.id][seccion.id][alumno.id]">
+                      <div *ngFor="let asi of AsistenciaPorAlumno[asignatura.id][seccion.id][alumno.id]">
+                        {{ asi.Estado ? 'Presente' : 'Ausente' }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <!-- Recorre usuarios adicionales -->
+          <tr *ngFor="let usuario of lista_usuarios">
+            <td style="text-align: left;">{{ usuario.nombre_completo }}</td>
+            <td style="text-align: right;">{{ usuario.Asistencia ? 'Presente' : 'Ausente' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ion-card>
+</ion-content>
+

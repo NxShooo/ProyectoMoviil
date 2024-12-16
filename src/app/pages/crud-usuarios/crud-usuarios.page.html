@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>crudFirse Base</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div>
+    <div *ngIf="!sw">
+      <ion-input [(ngModel)]="Usuario.nombre_completo" label="nombre_completo" placeholder="Nombre completo"></ion-input>
+      <ion-input [(ngModel)]="Usuario.correo" label="correo" placeholder="Correo"></ion-input>
+      <ion-input [(ngModel)]="Usuario.nombre_usuario" label="nombre_usuario" placeholder="Nombre de usuario"></ion-input>
+      <ion-input [(ngModel)]="Usuario.contrasena" label="contrasena" placeholder="Contraseña" type="password"></ion-input>
+      <ion-button (click)="grabar()">Grabar</ion-button>
+    </div>
+  </div>
+  <div>
+    <ion-list>
+      <ion-item *ngFor="let usuer of lista_usuarios">
+      {{usuer.nombre_completo}} 
+      {{usuer.contrasena}} 
+      {{usuer.correo}} 
+      {{ usuer.nombre_usuario}}
+      {{  usuer.id }}
+      <ion-button (click)="eliminar_user(usuer.id)">Eliminar</ion-button>
+      <ion-button (click)="modificar(usuer)">modificar</ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div>
+    <div *ngIf="sw">
+      <h2> modificar</h2>
+      <ion-input [(ngModel)]="nuevo_usuario.nombre_completo" label="nombre_completo" placeholder="Nombre completo"></ion-input>
+      <ion-input [(ngModel)]="nuevo_usuario.correo" label="correo" placeholder="Correo"></ion-input>
+      <ion-input [(ngModel)]="nuevo_usuario.nombre_usuario" label="nombre_usuario" placeholder="Nombre de usuario"></ion-input>
+      <ion-input [(ngModel)]="nuevo_usuario.contrasena" label="contrasena" placeholder="Contraseña" type="password"></ion-input>
+      <ion-button (click)="actualizar()">actualizar</ion-button>
+      <ion-button (click)="cancelar()">cancelar</ion-button>
+    </div>
+  </div>
+
+  
+</ion-content>
